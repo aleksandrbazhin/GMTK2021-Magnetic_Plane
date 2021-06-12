@@ -48,27 +48,23 @@ func move_attached(player_velocity: Vector2):
 
 
 func attach(new_attach_position: Vector2):
+	$AttackTimer.stop()
 	attach_position = new_attach_position
 	is_pulled = false
 	add_to_group("attached")
 	remove_from_group("enemies")
 	add_to_group("friends")
 	
-#
-#func update_magnet_pull(player: Player):
-#	if player.mass > mass:
-#		is_pulled = true
-#		$AttackTimer.stop()
-#		player.start_magnet()
-#	else:
-#		is_pulled = false
-#		$AttackTimer.start()
-
+	
 func update_behavior():
-	if GameState.player_mass <= mass:
+	if not is_pulled:
 		$AttackTimer.start()
 	else:
 		$AttackTimer.stop()
+#	if GameState.player_mass <= mass:
+#		$AttackTimer.start()
+#	else:
+#		$AttackTimer.stop()
 
 
 func _on_Area2D_body_entered(body): 
