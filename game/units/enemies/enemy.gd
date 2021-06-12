@@ -12,7 +12,7 @@ var time = 0
 
 var is_pullable := true
 var is_pulled := false
-var velocity = Vector2.ZERO
+var velocity := Vector2(0, Const.SCROLL_SPEED)
 var attach_position := Vector2.ZERO
 
 func _ready():

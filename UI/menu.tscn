@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/menu/start-button.png" type="Texture" id=1]
-[ext_resource path="res://assets/sprites/menu/Background.png" type="Texture" id=2]
 [ext_resource path="res://UI/menu.gd" type="Script" id=3]
 [ext_resource path="res://UI/ParallaxBackground.gd" type="Script" id=4]
 [ext_resource path="res://assets/fonts/Vezla.ttf" type="DynamicFontData" id=5]
@@ -43,15 +42,6 @@ motion_mirroring = Vector2( 3953, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 7 )
 centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( -1024.2, 300.493 )
-rotation = 4.71239
-scale = Vector2( 0.438006, 0.547326 )
-texture = ExtResource( 2 )
 
 [node name="VBoxContainer2" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -96,30 +86,29 @@ margin_bottom = 599.0
 
 [node name="Control" type="Control" parent="HBoxContainer"]
 margin_right = 846.0
-margin_bottom = 248.0
+margin_bottom = 185.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 850.0
 margin_right = 1069.0
-margin_bottom = 248.0
+margin_bottom = 185.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Control2" type="Control" parent="HBoxContainer/VBoxContainer"]
 margin_right = 219.0
-margin_bottom = 31.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
-margin_top = 35.0
+margin_top = 4.0
 margin_right = 219.0
-margin_bottom = 153.0
+margin_bottom = 122.0
 mouse_filter = 1
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 1 )
@@ -128,17 +117,17 @@ __meta__ = {
 }
 
 [node name="TextureButton2" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 157.0
+margin_top = 126.0
 margin_right = 219.0
-margin_bottom = 212.0
+margin_bottom = 181.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 text = "Quit"
 
 [node name="Control" type="Control" parent="HBoxContainer/VBoxContainer"]
-margin_top = 216.0
+margin_top = 185.0
 margin_right = 219.0
-margin_bottom = 248.0
+margin_bottom = 185.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -147,7 +136,7 @@ __meta__ = {
 [node name="Control2" type="Control" parent="HBoxContainer"]
 margin_left = 1073.0
 margin_right = 1920.0
-margin_bottom = 248.0
+margin_bottom = 185.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
