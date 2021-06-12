@@ -1,3 +1,3 @@
-extends "res://scenes/enemy.gd"
+extends "res://game/units/enemies/enemy.gd"
 
 
