@@ -1,6 +1,6 @@
 extends Area2D
 
-
+class_name Shot
 
 var direction = Vector2(1, 1)
 

@@ -1,10 +1,14 @@
 extends KinematicBody2D
 
+class_name Player
+
 
 var hp = 3
 var mass = 10
 var speed = 400
 var velocity = Vector2()
+
+onready var magnet := $magnet
 
 func _ready():
 	add_to_group("friends")
@@ -30,7 +34,7 @@ func get_input():
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 	velocity = velocity.normalized() * (speed  - mass / 100 * 20)
-	position.x = clamp(position.x, 0, 200)
+	position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
 
 func _physics_process(_delta):
 	if hp == 3:
@@ -42,5 +46,25 @@ func _physics_process(_delta):
 	elif hp <= 0:
 		queue_free()
 	get_input()
-	get_tree().call_group("attached", "move", velocity)
+	get_tree().call_group("attached", "move_attached", velocity)
 	velocity = move_and_slide(velocity)
+	
+func start_magnet():
+	magnet.visible = true
+	magnet.play()
+
+func stop_magnet():
+	magnet.visible = false
+	magnet.stop()
+
+func destroy():
+	get_tree().call_group("attached", "queue_free")
+	queue_free()
+
+
+func _on_Area2D_body_entered(body):
+	if body.get("is_pulled") != null and body.is_pulled == true:
+		stop_magnet()
+		body.attach()
+
+		

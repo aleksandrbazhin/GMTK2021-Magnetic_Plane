@@ -8,11 +8,44 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://game/units/enemies/enemy.gd"
+}, {
+"base": "Area2D",
+"class": "EnemyShot",
+"language": "GDScript",
+"path": "res://game/units/shots/enemy_shot.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://game/units/player.gd"
+}, {
+"base": "Area2D",
+"class": "Shot",
+"language": "GDScript",
+"path": "res://game/units/shots/shot.gd"
+} ]
+_global_script_class_icons={
+"BaseEnemy": "",
+"EnemyShot": "",
+"Player": "",
+"Shot": ""
+}
+
 [application]
 
 config/name="planes"
 run/main_scene="res://UI/menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Const="*res://Const.gd"
+GameState="*res://GameState.gd"
 
 [display]
 

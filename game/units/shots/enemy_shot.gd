@@ -1,5 +1,6 @@
 extends Area2D
 
+class_name EnemyShot
 
 var direction = Vector2(1, 1)
 

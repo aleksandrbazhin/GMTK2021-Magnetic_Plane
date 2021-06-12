@@ -26,7 +26,7 @@ animations = [ {
 extents = Vector2( 31.9033, 32.048 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 82.8916
+radius = 65.0
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -52,7 +52,7 @@ smoothing_enabled = true
 
 [node name="hp_circle" type="Sprite" parent="."]
 modulate = Color( 0.894118, 0.341176, 0.309804, 1 )
-position = Vector2( 0.294242, -1.2861 )
+position = Vector2( 0.294242, 3.7139 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 9 )
 
@@ -63,9 +63,11 @@ position = Vector2( 0, 4.23785 )
 shape = SubResource( 3 )
 
 [node name="magnet" type="AnimatedSprite" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0.254902 )
 position = Vector2( -5.99317, 191.958 )
 scale = Vector2( 1.80181, 1.87834 )
 frames = SubResource( 4 )
 frame = 1
 offset = Vector2( 0, -100 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
