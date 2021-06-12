@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://game/units/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0030.PNG" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0027.PNG" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0028.PNG" type="Texture" id=12]
 [ext_resource path="res://icon.png" type="Texture" id=13]
+[ext_resource path="res://game/units/MagnetArea2D.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -26,7 +27,8 @@ animations = [ {
 extents = Vector2( 31.9033, 32.048 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 65.0
+resource_local_to_scene = true
+radius = 200.0
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -35,6 +37,10 @@ animations = [ {
 "name": "default",
 "speed": 17.0
 } ]
+
+[sub_resource type="CircleShape2D" id=5]
+resource_local_to_scene = true
+radius = 50.0
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -56,13 +62,14 @@ position = Vector2( 0.294242, 3.7139 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 9 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MagnetArea2D" type="Area2D" parent="."]
+script = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetArea2D"]
 position = Vector2( 0, 4.23785 )
 shape = SubResource( 3 )
 
-[node name="magnet" type="AnimatedSprite" parent="."]
+[node name="MagnetSprite" type="AnimatedSprite" parent="MagnetArea2D"]
 visible = false
 modulate = Color( 1, 1, 1, 0.254902 )
 position = Vector2( -5.99317, 191.958 )
@@ -70,6 +77,12 @@ scale = Vector2( 1.80181, 1.87834 )
 frames = SubResource( 4 )
 frame = 1
 offset = Vector2( 0, -100 )
+
+[node name="AttachArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttachArea2D"]
+position = Vector2( 0, 4.23785 )
+shape = SubResource( 5 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -23.799
@@ -80,4 +93,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="MagnetArea2D" to="MagnetArea2D" method="_on_MagnetArea2D_body_entered"]
+[connection signal="body_exited" from="MagnetArea2D" to="MagnetArea2D" method="_on_MagnetArea2D_body_exited"]
+[connection signal="body_entered" from="AttachArea2D" to="." method="_on_Area2D_body_entered"]

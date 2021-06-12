@@ -5,11 +5,13 @@ onready var player: Player = $units/player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+# warning-ignore:return_value_discarded
 	player.connect("mass_changed", self, "on_player_mass_changed")
 
 func on_player_mass_changed():
 	for enemy in get_tree().get_nodes_in_group("enemies"):
-		enemy.update_magnet_pull(player)
+		enemy.update_behavior()
+		
 
 func leave_game():
 # warning-ignore:return_value_discarded

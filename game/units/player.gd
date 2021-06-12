@@ -10,8 +10,10 @@ var hp := 3.0
 var mass := Const.INITIAL_PLAYER_MASS
 var speed := MAX_SPEED
 var velocity = Vector2()
+var pullable_count_in_the_field := 0
 
-onready var magnet := $magnet
+onready var magnetic_field = $MagnetArea2D
+
 
 
 func _ready():
@@ -65,13 +67,6 @@ func _physics_process(_delta):
 	get_tree().call_group("attached", "move_attached", velocity)
 	velocity = move_and_slide(velocity)
 	
-func start_magnet():
-	magnet.visible = true
-	magnet.play()
-
-func stop_magnet():
-	magnet.visible = false
-	magnet.stop()
 
 func destroy():
 	get_tree().call_group("attached", "queue_free")
@@ -79,7 +74,8 @@ func destroy():
 
 func attach_enemy(enemy):
 	mass += enemy.mass
-	stop_magnet()
+	enemy.is_pulled = false
+	magnetic_field.remove_pulled(enemy)
 	enemy.attach(position - enemy.position)
 	enemy.connect("destoyed", self, "on_attached_destroyed")
 	emit_signal("mass_changed")

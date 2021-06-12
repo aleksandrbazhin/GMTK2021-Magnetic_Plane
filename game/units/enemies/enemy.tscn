@@ -26,9 +26,9 @@ shape = SubResource( 1 )
 position = Vector2( -0.0883875, -0.0398407 )
 frames = SubResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="VisionArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea2D"]
 visible = false
 shape = SubResource( 3 )
 
@@ -44,6 +44,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="VisionArea2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="VisionArea2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

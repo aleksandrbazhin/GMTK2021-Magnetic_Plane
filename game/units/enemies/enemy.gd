@@ -10,9 +10,9 @@ export var mass := 10
 export var hp := 4.0
 var time = 0
 
-var velocity = Vector2.ZERO
+var is_pullable := true
 var is_pulled := false
-#var is_attached := false
+var velocity = Vector2.ZERO
 var attach_position := Vector2.ZERO
 
 func _ready():
@@ -54,26 +54,30 @@ func attach(new_attach_position: Vector2):
 	remove_from_group("enemies")
 	add_to_group("friends")
 	
+#
+#func update_magnet_pull(player: Player):
+#	if player.mass > mass:
+#		is_pulled = true
+#		$AttackTimer.stop()
+#		player.start_magnet()
+#	else:
+#		is_pulled = false
+#		$AttackTimer.start()
 
-func update_magnet_pull(player: Player):
-	if player.mass > mass:
-		is_pulled = true
-		$AttackTimer.stop()
-		player.start_magnet()
-	else:
-		is_pulled = false
+func update_behavior():
+	if GameState.player_mass <= mass:
 		$AttackTimer.start()
+	else:
+		$AttackTimer.stop()
 
 
 func _on_Area2D_body_entered(body): 
 	if body.get_name() == "player" and not is_in_group("attached"):
-		update_magnet_pull(body)
+		update_behavior()
 
 
 func _on_Area2D_body_exited(body):
 	if body.get_name() == "player" and not is_in_group("attached"):
-		body.stop_magnet()
-		is_pulled = false
 		$AttackTimer.stop()
 
 
