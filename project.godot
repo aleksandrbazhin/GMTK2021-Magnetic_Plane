@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="planes"
-run/main_scene="res://scenes/menu.tscn"
+run/main_scene="res://UI/menu.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/resizable=false
 
 [global]
 
