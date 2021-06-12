@@ -19,6 +19,7 @@ script = ExtResource( 2 )
 
 [node name="Enemy1" parent="units" instance=ExtResource( 13 )]
 position = Vector2( 288.914, -529.66 )
+mass = 8
 
 [node name="Enemy2" parent="units" instance=ExtResource( 13 )]
 position = Vector2( -246.76, -1102.21 )
@@ -26,6 +27,14 @@ mass = 5
 
 [node name="Enemy3" parent="units" instance=ExtResource( 13 )]
 position = Vector2( 202.867, -1248.41 )
+mass = 20
+
+[node name="Enemy4" parent="units" instance=ExtResource( 13 )]
+position = Vector2( 561.62, -949.979 )
+mass = 60
+
+[node name="Enemy5" parent="units" instance=ExtResource( 13 )]
+position = Vector2( -441.618, -730.917 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 physics_material_override = SubResource( 1 )

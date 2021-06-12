@@ -12,7 +12,7 @@ func _ready():
 	speed = randi()%100
 	
 
-func _process(delta):
+func _process(_delta):
 	if hp <= 0:
 		queue_free()
 	

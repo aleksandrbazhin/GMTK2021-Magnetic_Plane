@@ -63,11 +63,21 @@ position = Vector2( 0, 4.23785 )
 shape = SubResource( 3 )
 
 [node name="magnet" type="AnimatedSprite" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.254902 )
 position = Vector2( -5.99317, 191.958 )
 scale = Vector2( 1.80181, 1.87834 )
 frames = SubResource( 4 )
 frame = 1
 offset = Vector2( 0, -100 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -23.799
+margin_top = 73.5391
+margin_right = 16.201
+margin_bottom = 87.5391
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

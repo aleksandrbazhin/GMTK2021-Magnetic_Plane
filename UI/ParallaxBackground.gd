@@ -1,7 +1,7 @@
 extends ParallaxBackground
 
 
-func _process(delta):
+func _process(_delta):
 	$ParallaxLayer.motion_offset = Vector2($ParallaxLayer.motion_offset.x+5, $ParallaxLayer.motion_offset.y)
 	$ParallaxLayer2.motion_offset = Vector2($ParallaxLayer.motion_offset.x+5, $ParallaxLayer.motion_offset.y)
 	
