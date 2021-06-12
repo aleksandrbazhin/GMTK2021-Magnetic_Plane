@@ -7,10 +7,10 @@ var time = 0
 
 
 var velocity = Vector2.ZERO
-
 var attack_now = false
-
 var magnet = null
+var target = null
+
 func _ready():
 	add_to_group("enemies")
 
@@ -25,7 +25,6 @@ func _on_Area2D_body_entered(body):
 			$Timer.start()
 			magnet.visible = true
 			magnet.play()
-var target = null
 
 func _on_Timer_timeout():
 	var player = false
@@ -43,10 +42,10 @@ func _on_Timer_timeout():
 					add_to_group("friends")
 					i.mass += mass
 					mass = 0
-
 	if player == false:
-		magnet.visible = false
-		magnet.stop()
+		if is_instance_valid(magnet):
+			magnet.visible = false
+			magnet.stop()
 
 func _physics_process(_delta):
 	#print(get_name(), ": ", is_in_group("attached"))
