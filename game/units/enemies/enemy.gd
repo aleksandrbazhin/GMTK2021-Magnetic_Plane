@@ -61,10 +61,6 @@ func update_behavior():
 		$AttackTimer.start()
 	else:
 		$AttackTimer.stop()
-#	if GameState.player_mass <= mass:
-#		$AttackTimer.start()
-#	else:
-#		$AttackTimer.stop()
 
 
 func _on_Area2D_body_entered(body): 
