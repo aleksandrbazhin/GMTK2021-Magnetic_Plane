@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/asteroid.png" type="Texture" id=1]
+[ext_resource path="res://asteroid.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.24163, 8.32794 )
+
+[node name="asteroid" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.371628, 0.743254 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.0615702, 0.588228 )
+scale = Vector2( 0.213549, 0.292394 )
+texture = ExtResource( 1 )
