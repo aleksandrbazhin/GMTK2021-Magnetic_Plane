@@ -26,6 +26,7 @@ func start_pull():
 	.start_pull()
 
 func shoot_with_player(target_position: Vector2):
+	$AudioStreamPlayer2D.play()
 	emit_bullet(target_position - attach_position.rotated(rotation), true)
 
 func update_behavior():
@@ -44,5 +45,6 @@ func attach(new_attach_position: Vector2):
 	.attach(new_attach_position)
 
 func _on_AttackTimer_timeout():
+	$AudioStreamPlayer2D.play()
 	emit_bullet(GameState.player_position, false)
 	

@@ -30,13 +30,10 @@ func start_moving():
 
 func update_behavior():
 	if not is_pulled:
-		is_moving = true
-		move_start_time = OS.get_ticks_msec()
+		start_moving()
 	else:
 		is_moving = false
 		
 
-
 func player_entered_vision():
-	
 	.player_entered_vision()
