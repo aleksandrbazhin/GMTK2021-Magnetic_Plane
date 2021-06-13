@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://game/units/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0030.PNG" type="Texture" id=2]
@@ -14,6 +14,15 @@
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0028.PNG" type="Texture" id=12]
 [ext_resource path="res://icon.png" type="Texture" id=13]
 [ext_resource path="res://game/units/MagnetArea2D.gd" type="Script" id=14]
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.00564972, 0.884615 ), 0.0, 0.0395795, 0, 0, Vector2( 0.615819, 0.673077 ), -1.08734, -1.08734, 0, 0, Vector2( 1, 0.076923 ), -0.137994, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0.00564972, 0.278846 ), 0.0, 0.121566, 0, 0, Vector2( 1, 1 ), 0.385341, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0 ), 0.0, 0.770344, 0, 1, Vector2( 0.536723, 0.413461 ), 0.0, 0.0, 0, 0, Vector2( 0.99435, 0 ), -0.90349, 0.0, 1, 0 ]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -44,6 +53,9 @@ radius = 50.0
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+red_channel_hp_modulate = SubResource( 6 )
+green_channel_hp_modulate = SubResource( 7 )
+blue_channel_hp_modulate = SubResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

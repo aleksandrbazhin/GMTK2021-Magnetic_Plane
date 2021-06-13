@@ -5,12 +5,17 @@ class_name Player
 signal mass_changed
 
 const MAX_SPEED := 400
+const MAX_HP := 10.0
 
-var hp := 10.0
+var hp := MAX_HP
 var mass := Const.INITIAL_PLAYER_MASS
 var speed := MAX_SPEED
 var velocity = Vector2()
 var pullable_count_in_the_field := 0
+
+export var red_channel_hp_modulate: Curve
+export var green_channel_hp_modulate: Curve
+export var blue_channel_hp_modulate: Curve
 
 onready var magnetic_field = $MagnetArea2D
 
@@ -62,14 +67,10 @@ func _physics_process(delta):
 	if hp <= 0:
 		queue_free()
 		return
-	
-	if is_equal_approx(hp, 3):
-		$hp_circle.modulate = Color(0.22,1,0.44,1)
-	elif is_equal_approx(hp, 2):
-		$hp_circle.modulate = Color(0.87,0.82,0.36,1)
-	elif is_equal_approx(hp, 1):
-		$hp_circle.modulate = Color(0.89,0.34,0.31,1)
-	
+	var hp_level := float(hp) / float(MAX_HP)
+	$hp_circle.modulate = Color(red_channel_hp_modulate.interpolate(hp_level), 
+			green_channel_hp_modulate.interpolate(hp_level), 
+			blue_channel_hp_modulate.interpolate(hp_level), 1)
 	get_input()
 	var new_velocity := move_and_slide(velocity)
 	get_tree().call_group("attached", "move_attached", position + new_velocity * delta, rotation)
@@ -97,7 +98,7 @@ func attach_enemy(enemy: KinematicBody2D):
 	emit_signal("mass_changed")
 
 	var attach_line: Line2D = Line2D.new()
-#	attach_line.z_index = 0
+	attach_line.z_index = 0
 	attach_line.points = [Vector2.ZERO, -attach_point]
 	add_child(attach_line)
 
