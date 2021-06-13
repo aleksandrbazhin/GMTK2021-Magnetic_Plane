@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://game/units/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0030.PNG" type="Texture" id=2]
@@ -8,12 +8,17 @@
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0029.PNG" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0023.PNG" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0024.PNG" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/white_circle.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/player/magnet ship 4.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0025.PNG" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0027.PNG" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0028.PNG" type="Texture" id=12]
-[ext_resource path="res://icon.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/health-bar.png" type="Texture" id=13]
 [ext_resource path="res://game/units/MagnetArea2D.gd" type="Script" id=14]
+[ext_resource path="res://assets/sprites/player/magnet ship 1.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/player/magnet ship 2.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/player/magnet ship 5.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/player/magnet ship 6.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/player/magnet ship 3.png" type="Texture" id=19]
 
 [sub_resource type="Curve" id=6]
 _data = [ Vector2( 0.00564972, 0.884615 ), 0.0, 0.0395795, 0, 0, Vector2( 0.615819, 0.673077 ), -1.08734, -1.08734, 0, 0, Vector2( 1, 0.076923 ), -0.137994, 0.0, 0, 0 ]
@@ -26,7 +31,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.770344, 0, 1, Vector2( 0.536723, 0.413461 ), 0
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 9 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -59,6 +64,9 @@ blue_channel_hp_modulate = SubResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 4
+speed_scale = 3.0
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.479698, -0.707108 )
@@ -72,7 +80,7 @@ smoothing_enabled = true
 modulate = Color( 0.894118, 0.341176, 0.309804, 1 )
 position = Vector2( 0.294242, 3.7139 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 9 )
+texture = ExtResource( 13 )
 
 [node name="MagnetArea2D" type="Area2D" parent="."]
 script = ExtResource( 14 )
