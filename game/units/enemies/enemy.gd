@@ -2,20 +2,18 @@ extends KinematicBody2D
 
 class_name BaseEnemy
 
-const SHOT_DAMAGE = 0.5
-const ROTATION_SPEED = 5.0
 
 signal destoyed()
 
-export var mass := 10
-export var hp := 4.0
+var mass := 10.0
+var hp := 4.0
 var time = 0
 
 var is_pullable := true
 var is_pulled := false
 var velocity := Vector2(0, Const.SCROLL_SPEED)
 var attach_position := Vector2.ZERO
-var is_shooting_player := false
+var damage := 0.5
 
 var bullet_emitter_position := Vector2(0, -25)
 
@@ -24,27 +22,26 @@ var attach_line_ref: WeakRef = null
 func _ready():
 	add_to_group("enemies")
 
+func setup(new_hp: float, new_mass: float, collision_size: Vector2, collision_offset: Vector2, new_damage: float):
+	mass = new_mass
+	hp = new_hp
+	damage = new_damage
+	$CollisionShape2D.shape.extents = collision_size
+	$CollisionShape2D.position = collision_offset
+	
 func destroy():
 	emit_signal("destoyed", self)
 	if attach_line_ref != null and attach_line_ref.get_ref() != null:
 		attach_line_ref.get_ref().queue_free()
 	queue_free()
 	
-func _process(_delta):
-	display_info()
-	
-func display_info():
-	$Label.text = "HP: %s\nMass: %d" % [str(hp), mass]
-	
 func start_pull():
-	is_shooting_player = false
 	is_pulled = true
 	
 func stop_pull():
-#	is_shooting_player = false
 	is_pulled = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if hp <= 0:
 		destroy()
 	if is_pulled:
@@ -57,10 +54,6 @@ func _physics_process(delta):
 		if not is_in_group("attached"):
 			velocity = move_and_slide(velocity)
 	position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
-	if is_shooting_player:
-		var target_rotation := position.angle_to_point(GameState.player_position) - PI/2
-		rotation = lerp_angle(rotation, target_rotation, delta * ROTATION_SPEED)
-
 
 
 func move_attached(new_player_position: Vector2, player_rotation: float):
@@ -70,7 +63,6 @@ func move_attached(new_player_position: Vector2, player_rotation: float):
 
 
 func attach(new_attach_position: Vector2):
-	$AttackTimer.stop()
 	attach_position = new_attach_position
 	is_pulled = false
 	add_to_group("attached")
@@ -80,35 +72,31 @@ func attach(new_attach_position: Vector2):
 
 	
 func update_behavior():
-	if not is_pulled:
-		is_shooting_player = true
-		$AttackTimer.start()
-	else:
-		is_shooting_player = false
-		$AttackTimer.stop()
+	pass
 
+func player_entered_vision():
+	update_behavior()
+	
+func player_exited_vision():
+	pass
 
 func _on_Area2D_body_entered(body): 
 	if body.get_name() == "player" and not is_in_group("attached"):
-		update_behavior()
-
+		player_entered_vision()
 
 func _on_Area2D_body_exited(body):
 	if body.get_name() == "player" and not is_in_group("attached"):
-		$AttackTimer.stop()
-
+		player_exited_vision()
+		
 func emit_bullet(target: Vector2, is_friendly: bool = false):
 	var shot: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()
 	shot.is_friendly = is_friendly
-	shot.damage = SHOT_DAMAGE
+	shot.damage = damage
 	shot.direction = target - position
 	shot.position = position + bullet_emitter_position.rotated(rotation)
 	shot.rotation = position.angle_to_point(target) - PI/2.0
 	get_parent().add_child(shot)
 
-
-func _on_AttackTimer_timeout():
-	emit_bullet(GameState.player_position, false)
-
-func shoot_with_player(target_position: Vector2):
-	emit_bullet(target_position, true)
+func shoot_with_player(_target_position: Vector2):
+	pass
+	

@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Shot",
 "language": "GDScript",
 "path": "res://game/shots/shot.gd"
+}, {
+"base": "BaseEnemy",
+"class": "Turret",
+"language": "GDScript",
+"path": "res://game/units/enemies/Turret.gd"
 } ]
 _global_script_class_icons={
 "BaseEnemy": "",
 "EnemyShot": "",
 "Player": "",
-"Shot": ""
+"Shot": "",
+"Turret": ""
 }
 
 [application]

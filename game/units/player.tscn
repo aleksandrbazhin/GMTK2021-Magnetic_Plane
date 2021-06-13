@@ -64,6 +64,7 @@ blue_channel_hp_modulate = SubResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 2
 speed_scale = 3.0
 playing = true
 
@@ -77,8 +78,7 @@ smoothing_enabled = true
 
 [node name="hp_circle" type="Sprite" parent="."]
 modulate = Color( 0.894118, 0.341176, 0.309804, 1 )
-position = Vector2( 0.294242, 3.7139 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 0, -15 )
 texture = ExtResource( 13 )
 
 [node name="MagnetArea2D" type="Area2D" parent="."]

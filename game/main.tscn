@@ -4,7 +4,7 @@
 [ext_resource path="res://game/main.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/Background1.png" type="Texture" id=3]
 [ext_resource path="res://game/ParallaxBackground.gd" type="Script" id=4]
-[ext_resource path="res://game/units/enemies/enemy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://game/units/enemies/Turret.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game/units/asteroid.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -39,24 +39,13 @@ texture = ExtResource( 3 )
 
 [node name="player" parent="units" instance=ExtResource( 1 )]
 
-[node name="Enemy1" parent="units" instance=ExtResource( 13 )]
-position = Vector2( 288.914, -529.66 )
-mass = 8
+[node name="Turret" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -312.813, -410.357 )
+rotation = -3.14159
 
-[node name="Enemy2" parent="units" instance=ExtResource( 13 )]
-position = Vector2( -246.76, -1102.21 )
-mass = 5
-
-[node name="Enemy3" parent="units" instance=ExtResource( 13 )]
-position = Vector2( 202.867, -1248.41 )
-mass = 20
-
-[node name="Enemy4" parent="units" instance=ExtResource( 13 )]
-position = Vector2( 561.62, -949.979 )
-mass = 60
-
-[node name="Enemy5" parent="units" instance=ExtResource( 13 )]
-position = Vector2( -441.618, -730.917 )
+[node name="Turret2" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 258.996, -422.13 )
+rotation = -3.14159
 
 [node name="asteroid" parent="units" instance=ExtResource( 14 )]
 visible = false
