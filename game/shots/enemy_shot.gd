@@ -14,7 +14,6 @@ func _process(delta):
 	position += direction * delta
 
 
-
 func _on_shot_body_entered(body):
 	if body.is_in_group("friends"):
 		body.hp -= damage

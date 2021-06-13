@@ -6,7 +6,7 @@ signal mass_changed
 
 const MAX_SPEED := 400
 
-var hp := 3.0
+var hp := 10.0
 var mass := Const.INITIAL_PLAYER_MASS
 var speed := MAX_SPEED
 var velocity = Vector2()
@@ -22,6 +22,10 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		shoot_to(get_global_mouse_position())
+	if event is InputEventMouseMotion:
+		rotation = position.angle_to_point(get_global_mouse_position()) - PI/2.0
+		
+		
 
 func _process(_delta):
 	display_info()
@@ -54,31 +58,49 @@ func get_input():
 	position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	if hp <= 0:
+		queue_free()
+		return
+	
 	if is_equal_approx(hp, 3):
 		$hp_circle.modulate = Color(0.22,1,0.44,1)
 	elif is_equal_approx(hp, 2):
 		$hp_circle.modulate = Color(0.87,0.82,0.36,1)
 	elif is_equal_approx(hp, 1):
 		$hp_circle.modulate = Color(0.89,0.34,0.31,1)
-	elif hp <= 0:
-		queue_free()
-	get_input()
-	get_tree().call_group("attached", "move_attached", velocity)
-	velocity = move_and_slide(velocity)
 	
-
+	get_input()
+	var new_velocity := move_and_slide(velocity)
+	get_tree().call_group("attached", "move_attached", position + new_velocity * delta, rotation)
+	velocity = new_velocity
+	
+	
 func destroy():
 	get_tree().call_group("attached", "queue_free")
 	queue_free()
 
-func attach_enemy(enemy):
+func attach_enemy(enemy: KinematicBody2D):
+	add_collision_exception_with(enemy)
+	for attached_enemy in get_tree().get_nodes_in_group("attached"):
+		attached_enemy.add_collision_exception_with(enemy)
+	
+	var attach_point: Vector2 = (position - enemy.position).rotated(-rotation)
+#	var attach_point: Vector2 = position - enemy.position
 	mass += enemy.mass
 	enemy.is_pulled = false
 	magnetic_field.remove_pulled(enemy)
-	enemy.attach(position - enemy.position)
-	enemy.connect("destoyed", self, "on_attached_destroyed")
+	enemy.attach(attach_point)
+	if not enemy.is_connected("destoyed", self, "on_attached_destroyed"):
+# warning-ignore:return_value_discarded
+		enemy.connect("destoyed", self, "on_attached_destroyed")
 	emit_signal("mass_changed")
+
+	var attach_line: Line2D = Line2D.new()
+#	attach_line.z_index = 0
+	attach_line.points = [Vector2.ZERO, -attach_point]
+	add_child(attach_line)
+
 
 func _on_Area2D_body_entered(body):
 	if body.get("is_pulled") != null and body.is_pulled == true:

@@ -33,7 +33,7 @@ visible = false
 shape = SubResource( 3 )
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.33
+wait_time = 0.5
 
 [node name="Label" type="Label" parent="."]
 margin_left = -18.8775

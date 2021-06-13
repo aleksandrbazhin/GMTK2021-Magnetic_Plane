@@ -19,13 +19,15 @@ func update_magnet():
 		stop_magnet()
 
 func add_pulled(pullable):
-	pullable.connect("tree_exited", self, "remove_pulled")
+	if pullable.has_signal("destroyed"):
+		pullable.connect("destroyed", self, "remove_pulled")
 	bodies_in_the_field += 1
 	update_magnet()
 
 func remove_pulled(pullable):
-	if pullable.is_connected("tree_exited", self, "remove_pulled"):
-		pullable.disconnect("tree_exited", self, "remove_pulled")
+	
+	if pullable.has_signal("destroyed") and pullable.is_connected("destroyed", self, "remove_pulled"):
+		pullable.disconnect("destroyed", self, "remove_pulled")
 	bodies_in_the_field -= 1
 	update_magnet()
 
