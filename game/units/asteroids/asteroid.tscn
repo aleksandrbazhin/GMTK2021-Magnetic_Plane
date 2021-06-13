@@ -33,4 +33,3 @@ shape = SubResource( 2 )
 
 [connection signal="body_entered" from="small_asteroid" to="." method="_on_small_asteroid_body_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

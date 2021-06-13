@@ -87,6 +87,7 @@ func attach_enemy(enemy):
 
 func _on_Area2D_body_entered(body):
 	if body.get("is_pulled") != null and body.is_pulled == true:
+		print(body)
 		attach_enemy(body)
 
 func on_attached_destroyed(body):

@@ -23,14 +23,7 @@ func _process(delta):
 	else:
 		move_and_slide(direction)
 
-func _physics_process(delta):
-	if is_pulled:
-		var player_gained_mass = GameState.player_mass - Const.INITIAL_PLAYER_MASS
-		var pull_speed: float = Const.BASE_PULL_SPEED * Const.INITIAL_PLAYER_MASS \
-		/ (Const.INITIAL_PLAYER_MASS + player_gained_mass * Const.PULL_PENALTY)
-		
-		var to_player := GameState.player_position - (position * 2)
-		direction += to_player * pull_speed
+
 
 func _on_small_asteroid_body_entered(body):
 	if body.is_in_group("friends"):
@@ -54,9 +47,14 @@ func move_attached(player_velocity: Vector2):
 	direction = player_velocity
 	#position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
 
+func update_behavior():
+	pass
+
+func shoot_with_player(_attack):
+	pass
 
 func attach(new_attach_position: Vector2):
-	$AttackTimer.stop()
+	print("attached")
 	attach_position = new_attach_position
 	is_pulled = false
 	add_to_group("attached")
