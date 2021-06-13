@@ -37,13 +37,17 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="units" type="Node2D" parent="."]
+position = Vector2( 12.6992, 0 )
+
+[node name="ducklings2" parent="units" instance=ExtResource( 4 )]
+position = Vector2( -80.8082, -1863.76 )
 
 [node name="player" parent="units" instance=ExtResource( 1 )]
 position = Vector2( 493.462, 117.477 )
 
 [node name="ducklings" parent="units" instance=ExtResource( 4 )]
-position = Vector2( -267.27, -951.48 )
-direction = Vector2( 1, 0 )
+position = Vector2( 982.571, -552.022 )
+direction = Vector2( -1, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 32.75, 9.5 )

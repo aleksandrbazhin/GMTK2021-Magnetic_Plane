@@ -7,7 +7,7 @@
 radius = 8.41738
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 11.7589
+radius = 34.2906
 
 [node name="big_asteroid" type="KinematicBody2D"]
 scale = Vector2( 5, 5 )

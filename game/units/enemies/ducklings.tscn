@@ -3,7 +3,7 @@
 [ext_resource path="res://ducklings.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 43.7991
+radius = 9.70824
 
 [node name="ducklings" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,6 +14,10 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 3.0
 
-[connection signal="body_entered" from="COLLISION" to="." method="_on_Area2D_body_entered"]
+[node name="VisNot2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -0.5 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="screen_entered" from="VisNot2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
