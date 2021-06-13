@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://game/units/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/magnet-animation/IMG_0030.PNG" type="Texture" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://assets/sprites/player/magnet ship 6.png" type="Texture" id=18]
 [ext_resource path="res://assets/sprites/player/magnet ship 3.png" type="Texture" id=19]
 [ext_resource path="res://assets/sfx/Bullet-shoot.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/sfx/attached.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/sfx/attached2.wav" type="AudioStream" id=22]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00564972, 0.884615 ), 0.0, 0.0395795, 0, 0, Vector2( 0.615819, 0.673077 ), -1.08734, -1.08734, 0, 0, Vector2( 1, 0.076923 ), -0.137994, 0.0, 0, 0 ]
@@ -41,14 +43,14 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=5]
 radius = 40.0
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 683, 540 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=7]
 resource_local_to_scene = true
 radius = 200.0
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": true,
@@ -56,7 +58,7 @@ animations = [ {
 "speed": 17.0
 } ]
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=9]
 resource_local_to_scene = true
 radius = 56.0
 
@@ -68,7 +70,7 @@ blue_channel_hp_modulate = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 4 )
-frame = 1
+frame = 4
 speed_scale = 3.0
 playing = true
 
@@ -85,7 +87,7 @@ smoothing_enabled = true
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/CameraArea2D"]
-shape = SubResource( 9 )
+shape = SubResource( 6 )
 
 [node name="hp_circle" type="Sprite" parent="."]
 modulate = Color( 0.894118, 0.341176, 0.309804, 1 )
@@ -97,22 +99,28 @@ script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetArea2D"]
 position = Vector2( 0, 4.23785 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="MagnetSprite" type="AnimatedSprite" parent="MagnetArea2D"]
 visible = false
 modulate = Color( 1, 1, 1, 0.254902 )
 position = Vector2( -5.99317, 191.958 )
 scale = Vector2( 1.80181, 1.87834 )
-frames = SubResource( 7 )
+frames = SubResource( 8 )
 frame = 1
 offset = Vector2( 0, -100 )
+
+[node name="AttachingSound" type="AudioStreamPlayer" parent="MagnetArea2D"]
+stream = ExtResource( 22 )
+
+[node name="AttachedSound" type="AudioStreamPlayer" parent="MagnetArea2D"]
+stream = ExtResource( 21 )
 
 [node name="AttachArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttachArea2D"]
 position = Vector2( 0, -15 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -23.799

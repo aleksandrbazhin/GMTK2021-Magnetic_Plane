@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://game/shots/enemy_shot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Bullet/IMG_0045.PNG" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sprites/Bullet/IMG_0050.PNG" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/Bullet/IMG_0048.PNG" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/Bullet/IMG_0053.PNG" type="Texture" id=11]
+[ext_resource path="res://assets/sfx/Gun-Shot2.ogg" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -38,11 +39,14 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.7 )
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 speed_scale = 4.0
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="body_entered" from="." to="." method="_on_shot_body_entered"]

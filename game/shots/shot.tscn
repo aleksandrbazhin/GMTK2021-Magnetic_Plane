@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/shots/shot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Bullet/IMG_0064.PNG" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sprites/Bullet/IMG_0065.PNG" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/Bullet/IMG_0067.PNG" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/Bullet/IMG_0068.PNG" type="Texture" id=7]
+[ext_resource path="res://assets/sfx/Gun-Shot2.ogg" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -38,7 +39,11 @@ shape = SubResource( 1 )
 position = Vector2( 0.3, 0 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 2 )
+frame = 1
 speed_scale = 3.0
 playing = true
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 
 [connection signal="body_entered" from="." to="." method="_on_shot_body_entered"]

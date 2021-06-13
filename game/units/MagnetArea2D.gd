@@ -10,6 +10,7 @@ func start_magnet():
 
 func stop_magnet():
 	magnet.visible = false
+	play_attached_sound()
 	magnet.stop()
 
 func update_magnet():
@@ -36,6 +37,7 @@ func _on_MagnetArea2D_body_entered(body):
 			body.get("mass") != null and body.get("is_pulled") != null:
 		if GameState.player_mass > body.mass:
 			body.start_pull()
+			play_attaching_sound()
 			add_pulled(body)
 			
 			
@@ -45,3 +47,11 @@ func _on_MagnetArea2D_body_exited(body):
 		if body.is_pulled == true:
 			body.stop_pull()
 			remove_pulled(body)
+
+func play_attaching_sound():
+	if !$AttachingSound.is_playing():
+		$AttachingSound.play()
+
+func play_attached_sound():
+	if !$AttachedSound.is_playing():
+		$AttachedSound.play()

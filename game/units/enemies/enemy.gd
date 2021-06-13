@@ -43,6 +43,7 @@ func stop_pull():
 
 func _physics_process(_delta):
 	if hp <= 0:
+		play_exlode_sound()
 		destroy()
 	if is_pulled:
 		var player_gained_mass = GameState.player_mass - Const.INITIAL_PLAYER_MASS
@@ -110,3 +111,8 @@ func emit_bullet(target: Vector2, is_friendly: bool = false):
 func shoot_with_player(_target_position: Vector2):
 	pass
 	
+
+func play_exlode_sound():
+	if !$EnemyExplodeSound.is_playing():
+		$EnemyExplodeSound.play()
+
