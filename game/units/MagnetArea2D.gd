@@ -35,7 +35,7 @@ func _on_MagnetArea2D_body_entered(body):
 	if body.get("is_pullable") != null and body.is_pullable == true and \
 			body.get("mass") != null and body.get("is_pulled") != null:
 		if GameState.player_mass > body.mass:
-			body.is_pulled = true
+			body.start_pull()
 			add_pulled(body)
 			
 			
@@ -43,5 +43,5 @@ func _on_MagnetArea2D_body_exited(body):
 	if body.get("is_pullable") != null and body.is_pullable == true and \
 			body.get("mass") != null and body.get("is_pulled") != null:
 		if body.is_pulled == true:
-			body.is_pulled = false
+			body.stop_pull()
 			remove_pulled(body)

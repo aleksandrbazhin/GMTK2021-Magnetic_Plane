@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/units/enemies/enemy.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/Enemies/turret 1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,6 +17,7 @@ animations = [ {
 radius = 407.864
 
 [node name="Enemy" type="KinematicBody2D"]
+rotation = 3.14159
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,6 +26,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.0883875, -0.0398407 )
 frames = SubResource( 2 )
+playing = true
 
 [node name="VisionArea2D" type="Area2D" parent="."]
 
