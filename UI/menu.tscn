@@ -79,7 +79,6 @@ margin_bottom = 535.0
 position = Vector2( 1062.73, 58.6266 )
 rotation = 1.5708
 frames = SubResource( 1 )
-frame = 1
 playing = true
 script = ExtResource( 12 )
 
