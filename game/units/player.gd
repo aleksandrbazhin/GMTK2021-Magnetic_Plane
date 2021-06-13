@@ -56,11 +56,11 @@ func get_input():
 
 
 func _physics_process(_delta):
-	if is_equal_approx(hp, 3):
+	if is_equal_approx(hp, 10):
 		$hp_circle.modulate = Color(0.22,1,0.44,1)
-	elif is_equal_approx(hp, 2):
+	elif is_equal_approx(hp, 6):
 		$hp_circle.modulate = Color(0.87,0.82,0.36,1)
-	elif is_equal_approx(hp, 1):
+	elif is_equal_approx(hp, 4):
 		$hp_circle.modulate = Color(0.89,0.34,0.31,1)
 	elif hp <= 0:
 		queue_free()

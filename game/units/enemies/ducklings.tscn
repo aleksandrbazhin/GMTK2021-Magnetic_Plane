@@ -17,7 +17,8 @@ shape = SubResource( 1 )
 wait_time = 3.0
 
 [node name="VisNot2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0, -0.5 )
+position = Vector2( -0.0788345, -0.5 )
+scale = Vector2( 0.992117, 1 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="screen_entered" from="VisNot2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
