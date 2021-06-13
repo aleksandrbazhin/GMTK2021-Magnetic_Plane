@@ -17,6 +17,8 @@ var velocity := Vector2(0, Const.SCROLL_SPEED)
 var attach_position := Vector2.ZERO
 var is_shooting_player := false
 
+var bullet_emitter_position := Vector2(0, -25)
+
 func _ready():
 	add_to_group("enemies")
 
@@ -96,7 +98,7 @@ func emit_bullet(target: Vector2, is_friendly: bool = false):
 	shot.is_friendly = is_friendly
 	shot.damage = SHOT_DAMAGE
 	shot.direction = target - position
-	shot.position = position
+	shot.position = position + bullet_emitter_position.rotated(rotation)
 	shot.rotation = position.angle_to_point(target) - PI/2.0
 	get_parent().add_child(shot)
 
