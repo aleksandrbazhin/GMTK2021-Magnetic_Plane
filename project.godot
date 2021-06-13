@@ -54,6 +54,10 @@ config/name="planes"
 run/main_scene="res://UI/menu.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency.web=100
+
 [autoload]
 
 Const="*res://Const.gd"

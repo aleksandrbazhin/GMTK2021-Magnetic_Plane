@@ -50,10 +50,20 @@ func _physics_process(_delta):
 				/ (Const.INITIAL_PLAYER_MASS + player_gained_mass * Const.PULL_PENALTY)
 		var to_player := GameState.player_position - position
 		velocity = move_and_slide(velocity + to_player * pull_speed)
+		check_destroy_plane()		
 	else:
 		if not is_in_group("attached"):
 			velocity = move_and_slide(velocity)
+			check_destroy_plane()
+
+			
 	position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
+
+func check_destroy_plane():
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider is StaticBody2D:
+			destroy()
 
 
 func move_attached(new_player_position: Vector2, player_rotation: float):

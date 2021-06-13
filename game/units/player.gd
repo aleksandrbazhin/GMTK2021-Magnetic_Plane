@@ -82,6 +82,13 @@ func destroy():
 	get_tree().call_group("attached", "queue_free")
 	queue_free()
 
+func update_speed():
+	var player_gained_mass = mass - Const.INITIAL_PLAYER_MASS
+	speed = MAX_SPEED * Const.INITIAL_PLAYER_MASS \
+		/ (Const.INITIAL_PLAYER_MASS + player_gained_mass * Const.PULL_PENALTY)
+
+	
+
 func attach_enemy(enemy: KinematicBody2D):
 	add_collision_exception_with(enemy)
 	for attached_enemy in get_tree().get_nodes_in_group("attached"):
@@ -90,6 +97,7 @@ func attach_enemy(enemy: KinematicBody2D):
 	var attach_point: Vector2 = (position - enemy.position).rotated(-rotation)
 #	var attach_point: Vector2 = position - enemy.position
 	mass += enemy.mass
+	update_speed()
 	enemy.is_pulled = false
 	magnetic_field.remove_pulled(enemy)
 	enemy.attach(attach_point)
@@ -97,7 +105,6 @@ func attach_enemy(enemy: KinematicBody2D):
 # warning-ignore:return_value_discarded
 		enemy.connect("destoyed", self, "on_attached_destroyed")
 	emit_signal("mass_changed")
-
 	var attach_line: Line2D = Line2D.new()
 	attach_line.z_index = 0
 	attach_line.points = [Vector2.ZERO, -attach_point]
@@ -112,4 +119,5 @@ func _on_Area2D_body_entered(body):
 func on_attached_destroyed(body):
 	if is_instance_valid(body):
 		mass -= body.mass
+		update_speed()
 	emit_signal("mass_changed")	
