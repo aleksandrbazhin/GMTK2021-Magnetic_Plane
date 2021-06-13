@@ -36,12 +36,12 @@ func _physics_process(_delta):
 		var player_gained_mass = GameState.player_mass - Const.INITIAL_PLAYER_MASS
 		var pull_speed: float = Const.BASE_PULL_SPEED * Const.INITIAL_PLAYER_MASS \
 				/ (Const.INITIAL_PLAYER_MASS + player_gained_mass * Const.PULL_PENALTY)
-		
 		var to_player := GameState.player_position - position
 		velocity = move_and_slide(velocity + to_player * pull_speed)
 	else:
 		if not is_in_group("attached"):
 			velocity = move_and_slide(velocity)
+	position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
 
 
 func move_attached(new_player_position: Vector2, player_rotation: float):
@@ -77,18 +77,18 @@ func _on_Area2D_body_exited(body):
 	if body.get_name() == "player" and not is_in_group("attached"):
 		$AttackTimer.stop()
 
+func emit_bullet(target: Vector2, is_friendly: bool = false):
+	var shot: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()
+	shot.is_friendly = is_friendly
+	shot.damage = SHOT_DAMAGE
+	shot.direction = target - position
+	shot.position = position
+	shot.rotation = position.angle_to_point(target) - PI/2.0
+	get_parent().add_child(shot)
+
 
 func _on_AttackTimer_timeout():
-	var shot: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()
-	shot.damage = SHOT_DAMAGE
-	shot.direction = GameState.player_position - position
-	shot.position = position
-	get_parent().add_child(shot)
-
+	emit_bullet(GameState.player_position, false)
 
 func shoot_with_player(target_position: Vector2):
-	var shot: Shot = preload("res://game/shots/shot.tscn").instance()
-	shot.damage = SHOT_DAMAGE
-	shot.direction = target_position - position
-	shot.position = position
-	get_parent().add_child(shot)
+	emit_bullet(target_position, true)

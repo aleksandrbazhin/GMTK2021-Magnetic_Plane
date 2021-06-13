@@ -44,7 +44,8 @@ func shoot_to(target_position: Vector2):
 	shot.direction = target_position - position
 	shot.position = position
 	get_parent().add_child(shot)
-	shot.look_at(target_position)
+	shot.rotation = position.angle_to_point(target_position) - PI/2.0
+
 	for attached_enemy in get_tree().get_nodes_in_group("attached"):
 		attached_enemy.shoot_with_player(target_position)
 

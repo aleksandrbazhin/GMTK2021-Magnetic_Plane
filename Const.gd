@@ -1,6 +1,6 @@
 extends Node
 
-const SCROLL_SPEED := 100.0
+const SCROLL_SPEED := 150.0
 
 const INITIAL_PLAYER_MASS := 10
 const BASE_PULL_SPEED := 0.05
