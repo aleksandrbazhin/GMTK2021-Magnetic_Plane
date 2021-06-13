@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ducklings.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 43.7991
+
+[node name="ducklings" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="COLLISION" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="COLLISION"]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="body_entered" from="COLLISION" to="." method="_on_Area2D_body_entered"]

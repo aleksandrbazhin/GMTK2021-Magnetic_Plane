@@ -1,16 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/units/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/main.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/Background1.png" type="Texture" id=3]
-[ext_resource path="res://game/ParallaxBackground.gd" type="Script" id=4]
-[ext_resource path="res://game/units/enemies/enemy.tscn" type="PackedScene" id=13]
-[ext_resource path="res://game/units/asteroid.tscn" type="PackedScene" id=14]
+[ext_resource path="res://game/units/enemies/ducklings.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 588.1, 65.4941 )
+extents = Vector2( 1404.57, 65.4941 )
 
 [node name="main" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,53 +17,38 @@ script = ExtResource( 2 )
 layer = -128
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-margin_right = 1920.0
-margin_bottom = 1080.0
-color = Color( 0.0980392, 0.105882, 0.180392, 1 )
+margin_left = -3.09033
+margin_top = -4.3927
+margin_right = 1916.91
+margin_bottom = 1075.61
+color = Color( 0.121844, 0.0980392, 0.180392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-script = ExtResource( 4 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 0, 5000 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 812.75, 965.14 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="units" type="Node2D" parent="."]
 
 [node name="player" parent="units" instance=ExtResource( 1 )]
+position = Vector2( 493.462, 117.477 )
 
-[node name="Enemy1" parent="units" instance=ExtResource( 13 )]
-position = Vector2( 288.914, -529.66 )
-mass = 8
-
-[node name="Enemy2" parent="units" instance=ExtResource( 13 )]
-position = Vector2( -246.76, -1102.21 )
-mass = 5
-
-[node name="Enemy3" parent="units" instance=ExtResource( 13 )]
-position = Vector2( 202.867, -1248.41 )
-mass = 20
-
-[node name="Enemy4" parent="units" instance=ExtResource( 13 )]
-position = Vector2( 561.62, -949.979 )
-mass = 60
-
-[node name="Enemy5" parent="units" instance=ExtResource( 13 )]
-position = Vector2( -441.618, -730.917 )
-
-[node name="asteroid" parent="units" instance=ExtResource( 14 )]
-visible = false
-position = Vector2( -434.34, -14.8635 )
-scale = Vector2( 10, 10 )
+[node name="ducklings" parent="units" instance=ExtResource( 4 )]
+position = Vector2( -267.27, -951.48 )
+direction = Vector2( 1, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 32.75, 9.5 )
 physics_material_override = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 31.7587, 191.167 )
+position = Vector2( 788.094, 286.304 )
 shape = SubResource( 2 )

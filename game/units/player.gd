@@ -6,7 +6,7 @@ signal mass_changed
 
 const MAX_SPEED := 400
 
-var hp := 3.0
+var hp := 10.0
 var mass := Const.INITIAL_PLAYER_MASS
 var speed := MAX_SPEED
 var velocity = Vector2()
@@ -35,7 +35,7 @@ func shoot_to(target_position: Vector2):
 	shot.direction = target_position - position
 	shot.position = position
 	get_parent().add_child(shot)
-	shot.look_at(target_position)
+	shot.look_at(shot.direction)
 	for attached_enemy in get_tree().get_nodes_in_group("attached"):
 		attached_enemy.shoot_with_player(target_position)
 
@@ -65,6 +65,10 @@ func _physics_process(_delta):
 		queue_free()
 	get_input()
 	get_tree().call_group("attached", "move_attached", velocity)
+	if velocity == Vector2(0,0):
+		$AnimatedSprite.play("stay")
+	else:
+		$AnimatedSprite.play("default")
 	velocity = move_and_slide(velocity)
 	
 

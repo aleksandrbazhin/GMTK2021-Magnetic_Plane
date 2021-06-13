@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name BaseEnemy
 
-const SHOT_DAMAGE = 0.5
+const SHOT_DAMAGE = 1.0
 
 signal destoyed()
 
@@ -20,6 +20,7 @@ func _ready():
 
 func destroy():
 	emit_signal("destoyed", self)
+	$AnimatedSprite.play("explode")
 	queue_free()
 	
 func _process(_delta):

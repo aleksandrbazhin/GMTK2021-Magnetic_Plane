@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/units/asteroids/asteroid.gd" type="Script" id=1]
+[ext_resource path="res://game/units/asteroids/Enemies/astroid M.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.41738
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 11.7589
+
+[node name="big_asteroid" type="KinematicBody2D"]
+scale = Vector2( 5, 5 )
+script = ExtResource( 1 )
+direction = Vector2( 1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.100309, 0.566278 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.0615702, 0.588228 )
+scale = Vector2( 0.213549, 0.292394 )
+texture = ExtResource( 2 )
+
+[node name="small_asteroid" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small_asteroid"]
+position = Vector2( 0.0701523, 0.701538 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[connection signal="body_entered" from="small_asteroid" to="." method="_on_small_asteroid_body_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
