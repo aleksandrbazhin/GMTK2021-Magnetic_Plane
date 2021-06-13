@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/logo-no-bond.png-c45470877b0c8c4a05e764b058ad6f85.stex"
+path="res://.import/button-start.png-0d3cef304ef751c4c8bbadb44032e11f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/logo-no-bond.png"
-dest_files=[ "res://.import/logo-no-bond.png-c45470877b0c8c4a05e764b058ad6f85.stex" ]
+source_file="res://assets/sprites/UI/button-start.png"
+dest_files=[ "res://.import/button-start.png-0d3cef304ef751c4c8bbadb44032e11f.stex" ]
 
 [params]
 
