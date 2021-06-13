@@ -9,7 +9,7 @@ const MAX_HP := 10.0
 
 var hp := MAX_HP
 var mass := Const.INITIAL_PLAYER_MASS
-var speed := MAX_SPEED
+var speed := MAX_SPEED + Const.SCROLL_SPEED
 var velocity = Vector2()
 var pullable_count_in_the_field := 0
 
@@ -18,7 +18,7 @@ export var green_channel_hp_modulate: Curve
 export var blue_channel_hp_modulate: Curve
 
 onready var magnetic_field = $MagnetArea2D
-
+onready var camera: Camera2D = $Camera2D
 
 
 func _ready():
@@ -62,6 +62,7 @@ func get_input():
 		velocity.y -= 1
 	velocity = velocity.normalized() * (speed - mass / 100.0 * 20.0)
 	position.x = clamp(position.x, Const.MIN_X, Const.MAX_X)
+	
 
 
 func _physics_process(delta):
@@ -76,8 +77,7 @@ func _physics_process(delta):
 	var new_velocity := move_and_slide(velocity)
 	get_tree().call_group("attached", "move_attached", position + new_velocity * delta, rotation)
 	velocity = new_velocity
-	
-	
+
 func destroy():
 	get_tree().call_group("attached", "queue_free")
 	queue_free()
@@ -85,8 +85,7 @@ func destroy():
 func update_speed():
 	var player_gained_mass = mass - Const.INITIAL_PLAYER_MASS
 	speed = MAX_SPEED * Const.INITIAL_PLAYER_MASS \
-		/ (Const.INITIAL_PLAYER_MASS + player_gained_mass * Const.PULL_PENALTY)
-
+		/ (Const.INITIAL_PLAYER_MASS + player_gained_mass * Const.PULL_PENALTY) + Const.SCROLL_SPEED
 	
 
 func attach_enemy(enemy: KinematicBody2D):
@@ -110,7 +109,6 @@ func attach_enemy(enemy: KinematicBody2D):
 	attach_line.points = [Vector2.ZERO, -attach_point]
 	add_child(attach_line)
 	enemy.attach_line_ref = weakref(attach_line)
-
 
 func _on_Area2D_body_entered(body):
 	if body.get("is_pulled") != null and body.is_pulled == true:
