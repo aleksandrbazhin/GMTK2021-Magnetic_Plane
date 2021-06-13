@@ -26,7 +26,7 @@ func start_pull():
 	.start_pull()
 
 func shoot_with_player(target_position: Vector2):
-	emit_bullet(target_position, true)
+	emit_bullet(target_position - attach_position.rotated(rotation), true)
 
 func update_behavior():
 	if not is_pulled:

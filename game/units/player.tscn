@@ -64,7 +64,6 @@ blue_channel_hp_modulate = SubResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
 speed_scale = 3.0
 playing = true
 

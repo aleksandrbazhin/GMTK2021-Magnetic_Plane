@@ -47,6 +47,62 @@ rotation = -3.14159
 position = Vector2( 258.996, -422.13 )
 rotation = -3.14159
 
+[node name="Turret3" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -309.45, -708.035 )
+rotation = -3.14159
+
+[node name="Turret4" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 262.36, -719.807 )
+rotation = -3.14159
+
+[node name="Turret5" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -307.768, -1064.57 )
+rotation = -3.14159
+
+[node name="Turret6" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 264.042, -1076.35 )
+rotation = -3.14159
+
+[node name="Turret7" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -322.904, -1370.66 )
+rotation = -3.14159
+
+[node name="Turret8" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 248.905, -1382.43 )
+rotation = -3.14159
+
+[node name="Turret9" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -303.834, -2345.48 )
+rotation = -3.14159
+
+[node name="Turret10" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 267.976, -2357.26 )
+rotation = -3.14159
+
+[node name="Turret11" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -300.47, -2643.16 )
+rotation = -3.14159
+
+[node name="Turret12" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 271.339, -2654.93 )
+rotation = -3.14159
+
+[node name="Turret13" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -298.788, -2999.7 )
+rotation = -3.14159
+
+[node name="Turret14" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 273.021, -3011.47 )
+rotation = -3.14159
+
+[node name="Turret15" parent="units" instance=ExtResource( 5 )]
+position = Vector2( -313.925, -3305.79 )
+rotation = -3.14159
+
+[node name="Turret16" parent="units" instance=ExtResource( 5 )]
+position = Vector2( 257.885, -3317.56 )
+rotation = -3.14159
+
 [node name="asteroid" parent="units" instance=ExtResource( 14 )]
 visible = false
 position = Vector2( -434.34, -14.8635 )
