@@ -102,6 +102,7 @@ func attach_enemy(enemy: KinematicBody2D):
 	attach_line.z_index = 0
 	attach_line.points = [Vector2.ZERO, -attach_point]
 	add_child(attach_line)
+	enemy.attach_line_ref = weakref(attach_line)
 
 
 func _on_Area2D_body_entered(body):

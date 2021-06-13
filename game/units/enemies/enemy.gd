@@ -19,11 +19,15 @@ var is_shooting_player := false
 
 var bullet_emitter_position := Vector2(0, -25)
 
+var attach_line_ref: WeakRef = null
+
 func _ready():
 	add_to_group("enemies")
 
 func destroy():
 	emit_signal("destoyed", self)
+	if attach_line_ref != null and attach_line_ref.get_ref() != null:
+		attach_line_ref.get_ref().queue_free()
 	queue_free()
 	
 func _process(_delta):
