@@ -44,7 +44,7 @@ animations = [ {
 radius = 40.0
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 683, 540 )
+extents = Vector2( 423.103, 540 )
 
 [sub_resource type="CircleShape2D" id=7]
 resource_local_to_scene = true
@@ -80,11 +80,11 @@ shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_right = 100
 limit_bottom = 540
 smoothing_enabled = true
 
 [node name="CameraArea2D" type="Area2D" parent="Camera2D"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/CameraArea2D"]
 shape = SubResource( 6 )

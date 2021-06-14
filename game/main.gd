@@ -7,6 +7,9 @@ onready var player: Player = $units/player
 func _ready():
 # warning-ignore:return_value_discarded
 	player.connect("mass_changed", self, "on_player_mass_changed")
+	$units/player/Camera2D.limit_left = -680
+	$units/player/Camera2D.limit_right = 680
+	$units/player/Camera2D.limit_bottom = 540
 
 func on_player_mass_changed():
 	for enemy in get_tree().get_nodes_in_group("enemies"):
@@ -44,7 +47,7 @@ func spawn_enemy():
 
 
 func _on_Area2D_body_entered(body):
-	print("yes")
 	if body.get_name() == "player":
+		print("yes")
 		get_tree().change_scene("res://game/units/bosses/boss.tscn")
 
