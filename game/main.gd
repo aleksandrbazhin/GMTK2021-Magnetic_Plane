@@ -41,12 +41,10 @@ func spawn_enemy():
 	$units.add_child(enemy)
 
 	# player attc
-<<<<<<< HEAD
-=======
 
 
 func _on_Area2D_body_entered(body):
 	print("yes")
 	if body.get_name() == "player":
 		get_tree().change_scene("res://game/units/bosses/boss.tscn")
->>>>>>> a44db42 (add boss)
+
