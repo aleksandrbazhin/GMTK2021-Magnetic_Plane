@@ -18,7 +18,7 @@ var bullet_emitter_position := Vector2(0, -25)
 func _ready():
 	add_to_group("enemies")
 
-func setup(new_hp: float, new_mass: float, collision_size: Vector2, collision_offset: Vector2, new_damage: float):
+func setup(new_hp: float, new_mass: float, collision_size: Vector2, collision_offset: Vector2, new_damage: float) -> void:
 	mass = new_mass
 	hp = new_hp
 	damage = new_damage
@@ -36,29 +36,11 @@ func _physics_process(_delta):
 		destroy()
 
 
-
-
-func update_behavior():
-	pass
-
-func player_entered_vision():
-	pass
-	
-func player_exited_vision():
-	pass
-
-
-
-
-		
-func emit_bullet(target: Vector2, is_friendly: bool = false):
+func emit_bullet():
 	var shot: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()
-	shot.is_friendly = is_friendly
 	shot.damage = damage
-	shot.direction = target - position
+	shot.direction = GameState.player_position - position
 	shot.position = position + bullet_emitter_position.rotated(rotation)
-	shot.rotation = position.angle_to_point(target) - PI/2.0
+	shot.rotation = position.angle_to_point(GameState.player_position) - PI/2.0
 	get_parent().add_child(shot)
 
-func shoot_with_player(_target_position: Vector2):
-	pass

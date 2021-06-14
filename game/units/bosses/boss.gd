@@ -47,19 +47,19 @@ func turrets_attack() -> void:
 		return
 	var turrets_destroyed = 0
 	if get_node_or_null("../units/boss_turrets/turret") != null:
-		get_node("../units/boss_turrets/turret").emit_bullet(GameState.player_position, false)
+		get_node("../units/boss_turrets/turret").emit_bullet()
 	else:
 		turrets_destroyed += 1
 	if get_node_or_null("../units/boss_turrets/turret2") != null:
-		get_node("../units/boss_turrets/turret2").emit_bullet(GameState.player_position, false)
+		get_node("../units/boss_turrets/turret2").emit_bullet()
 	else:
 		turrets_destroyed += 1
 	if get_node_or_null("../units/boss_turrets/turret3") != null:
-		get_node("../units/boss_turrets/turret3").emit_bullet(GameState.player_position, false)
+		get_node("../units/boss_turrets/turret3").emit_bullet()
 	else:
 		turrets_destroyed += 1
 	if get_node_or_null("../units/boss_turrets/turret4") != null:
-		get_node("../units/boss_turrets/turret4").emit_bullet(GameState.player_position, false)
+		get_node("../units/boss_turrets/turret4").emit_bullet()
 	else:
 		turrets_destroyed += 1
 	
@@ -78,9 +78,10 @@ func _ready():
 	$AttackTimer.start(3)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if hp <= 0:
 		queue_free()
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://UI/menu.tscn")
 
 
@@ -107,4 +108,4 @@ func _on_AttackTimer_timeout():
 	if destroyed != 4:
 		$AttackTimer.start(2)
 	else:
-		$AttackTimer.start(1)
+		$AttackTimer.start(0.5)

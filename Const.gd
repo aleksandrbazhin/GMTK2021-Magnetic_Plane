@@ -9,3 +9,4 @@ const PULL_PENALTY := 0.6
 const MAX_X := 630
 const MIN_X := -630
 
+const MAX_HP = 10.0

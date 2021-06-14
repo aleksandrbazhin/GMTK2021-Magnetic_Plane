@@ -5,9 +5,7 @@ class_name Player
 signal mass_changed
 
 const MAX_SPEED := 400
-const MAX_HP := 10.0
 
-var hp := MAX_HP
 var mass := Const.INITIAL_PLAYER_MASS
 var speed := MAX_SPEED + Const.SCROLL_SPEED
 var velocity = Vector2()
@@ -36,7 +34,7 @@ func _process(_delta):
 	display_info()
 
 func display_info():
-	$Label.text = "HP: %s\nMass: %d" % [str(hp), mass]
+	$Label.text = "HP: %s\nMass: %d" % [str(GameState.player_hp), mass]
 
 
 func shoot_to(target_position: Vector2):
@@ -66,10 +64,10 @@ func get_input():
 
 
 func _physics_process(delta):
-	if hp <= 0:
+	if GameState.player_hp <= 0:
 		queue_free()
 		return
-	var hp_level := float(hp) / float(MAX_HP)
+	var hp_level := float(GameState.player_hp) / float(Const.MAX_HP)
 	$hp_circle.modulate = Color(red_channel_hp_modulate.interpolate(hp_level), 
 			green_channel_hp_modulate.interpolate(hp_level), 
 			blue_channel_hp_modulate.interpolate(hp_level), 1)
@@ -112,6 +110,7 @@ func attach_enemy(enemy: KinematicBody2D):
 
 func _on_Area2D_body_entered(body):
 	if body.get("is_pulled") != null and body.is_pulled == true:
+		body.z_index = 1
 		attach_enemy(body)
 
 func on_attached_destroyed(body):
