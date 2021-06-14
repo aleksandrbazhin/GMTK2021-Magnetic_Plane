@@ -46,8 +46,7 @@ func spawn_enemy():
 	# player attc
 
 
+
 func _on_Area2D_body_entered(body):
 	if body.get_name() == "player":
-		print("yes")
 		get_tree().change_scene("res://game/units/bosses/boss.tscn")
-

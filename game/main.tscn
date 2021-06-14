@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/units/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/main.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://game/ParallaxBackground.gd" type="Script" id=4]
 [ext_resource path="res://game/units/enemies/Turret.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game/units/enemies/Duckling.tscn" type="PackedScene" id=6]
-
 [ext_resource path="res://assets/sfx/Space_thingy_thingy_thing.ogg" type="AudioStream" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -14,11 +13,8 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 683, 60 )
 
-
-
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1896.29, 286.967 )
-
+extents = Vector2( 35.1125, 286.967 )
 
 [node name="main" type="Node2D"]
 script = ExtResource( 2 )
@@ -124,17 +120,16 @@ position = Vector2( 0, 600 )
 shape = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
 stream = ExtResource( 7 )
 autoplay = true
 
-
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 22.5508, -5010.66 )
+scale = Vector2( -19.8852, 0.0944064 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -135.347, 460.071 )
+position = Vector2( 8.81449, 1356.25 )
+scale = Vector2( 1.36, 1 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-

@@ -1,16 +1,19 @@
 extends KinematicBody2D
 
-
+#types of attacks
 var attacks = ["attack_three_bullets", "attack_turrets", "attack_bullet_hell"]
 var attack_index = 0
 
+# turrets vars
 var target = null
-
-var turrets = true
-var hp = 20
+var destroyed = 0 # how many destroyed
 
 
-func attack_three_bullets():
+# hp of boss
+var hp = 40
+
+
+func attack_bullets():
 	if target != null:
 		var shot: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()
 		shot.damage = 1
@@ -35,7 +38,9 @@ func attack_three_bullets():
 		shot3.rotation = position.angle_to_point(target.position) - PI/2.0
 		shot3.scale = Vector2(3,3)
 		add_child(shot3)
-		if turrets == false:
+		
+		
+		if destroyed == 4:
 			var shot4: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()
 			shot4.damage = 1
 			shot4.direction = target.position - position
@@ -53,7 +58,7 @@ func attack_three_bullets():
 			add_child(shot5)
 
 func attack_turrets():
-	if turrets == false:
+	if destroyed == 4:
 		return
 	var all = 0
 	if get_node_or_null("../turret") != null:
@@ -73,12 +78,13 @@ func attack_turrets():
 	else:
 		all += 1
 	
-	if all == 4:
-		turrets = false
+	destroyed = all
+	if destroyed == 4:
 		add_to_group("enemies")
 
 func attack_bullet_hell():
-	attack_three_bullets()
+	# just attack together(turrets and boss)
+	attack_bullets()
 	attack_turrets()
 
 
@@ -96,20 +102,21 @@ func _on_AttackTimer_timeout():
 		if i.get_name() == "player":
 			target = i
 	
-	if turrets == false and attacks[attack_index] == "attack_three_bullets":
+	if destroyed == 4 and attacks[attack_index] == "attack_three_bullets":
 		attack_index += 1
 	if attacks[attack_index] == "attack_three_bullets":
 		attack_turrets()
 	elif attacks[attack_index] == "attack_turrets":
-		attack_three_bullets()
+		attack_bullets()
 	else:
 		attack_bullet_hell()
+	
 	if attack_index >= attacks.size()-1:
 		attack_index = 0
 	else:
 		attack_index += 1
 	
-	if turrets == true:
+	if destroyed != 4:
 		$AttackTimer.start(3)
 	else:
 		$AttackTimer.start(1)
