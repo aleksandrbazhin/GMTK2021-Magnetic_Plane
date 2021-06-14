@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+class_name boss_turret
 
 signal destoyed()
 
@@ -10,12 +10,10 @@ var time = 0
 
 
 
-var attach_position := Vector2.ZERO
 var damage := 0.5
-
 var bullet_emitter_position := Vector2(0, -25)
 
-var attach_line_ref: WeakRef = null
+
 
 func _ready():
 	add_to_group("enemies")
@@ -29,8 +27,6 @@ func setup(new_hp: float, new_mass: float, collision_size: Vector2, collision_of
 	
 func destroy():
 	emit_signal("destoyed", self)
-	if attach_line_ref != null and attach_line_ref.get_ref() != null:
-		attach_line_ref.get_ref().queue_free()
 	queue_free()
 	
 
@@ -46,18 +42,14 @@ func update_behavior():
 	pass
 
 func player_entered_vision():
-	update_behavior()
+	pass
 	
 func player_exited_vision():
 	pass
 
-func _on_Area2D_body_entered(body): 
-	if body.get_name() == "player" and not is_in_group("attached"):
-		player_entered_vision()
 
-func _on_Area2D_body_exited(body):
-	if body.get_name() == "player" and not is_in_group("attached"):
-		player_exited_vision()
+
+
 		
 func emit_bullet(target: Vector2, is_friendly: bool = false):
 	var shot: EnemyShot = preload("res://game/shots/enemy_shot.tscn").instance()

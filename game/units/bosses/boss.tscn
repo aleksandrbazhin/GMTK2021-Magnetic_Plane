@@ -1,30 +1,11 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://game/units/bosses/boss_enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/Enemies/duck2.png" type="Texture" id=2]
 [ext_resource path="res://game/units/bosses/boss.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0025.PNG" type="Texture" id=4]
+[ext_resource path="res://game/units/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/Background1.png" type="Texture" id=5]
 [ext_resource path="res://game/units/bosses/boss_scene.gd" type="Script" id=6]
-[ext_resource path="res://assets/sprites/player/magnet ship 5.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0031.PNG" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/player/magnet ship 6.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0027.PNG" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0029.PNG" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/player/magnet ship 4.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0028.PNG" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0022.PNG" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/health-bar.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/player/magnet ship 1.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/player/magnet ship 3.png" type="Texture" id=17]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0030.PNG" type="Texture" id=18]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0026.PNG" type="Texture" id=19]
-[ext_resource path="res://assets/sfx/Bullet-shoot.ogg" type="AudioStream" id=20]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0024.PNG" type="Texture" id=21]
-[ext_resource path="res://assets/sprites/player/magnet ship 2.png" type="Texture" id=22]
-[ext_resource path="res://assets/sprites/magnet-animation/IMG_0023.PNG" type="Texture" id=23]
-[ext_resource path="res://game/units/MagnetArea2D.gd" type="Script" id=24]
-[ext_resource path="res://game/units/player.gd" type="Script" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 366.99, 291.616 )
@@ -37,8 +18,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 975.178, 905.284 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 968.477, 699.384 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 27.4931, 869.124 )
@@ -46,49 +27,13 @@ extents = Vector2( 27.4931, 869.124 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 982.151, 69.4727 )
 
-[sub_resource type="Curve" id=6]
-_data = [ Vector2( 0.00564972, 0.884615 ), 0.0, 0.0395795, 0, 0, Vector2( 0.615819, 0.673077 ), -1.08734, -1.08734, 0, 0, Vector2( 1, 0.076923 ), -0.137994, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=7]
-_data = [ Vector2( 0.00564972, 0.278846 ), 0.0, 0.121566, 0, 0, Vector2( 1, 1 ), 0.385341, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=8]
-_data = [ Vector2( 0, 0 ), 0.0, 0.770344, 0, 1, Vector2( 0.536723, 0.413461 ), 0.0, 0.0, 0, 0, Vector2( 0.99435, 0 ), -0.90349, 0.0, 1, 0 ]
-
-[sub_resource type="SpriteFrames" id=9]
-animations = [ {
-"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 40.0
-
-[sub_resource type="CircleShape2D" id=11]
-resource_local_to_scene = true
-radius = 200.0
-
-[sub_resource type="SpriteFrames" id=12]
-animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 4 ), ExtResource( 19 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 18 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "default",
-"speed": 17.0
-} ]
-
-[sub_resource type="CircleShape2D" id=13]
-resource_local_to_scene = true
-radius = 56.0
-
 [node name="boss" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="boss" type="KinematicBody2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boss"]
+[node name="boss_hitbox" type="CollisionShape2D" parent="boss"]
 visible = false
 shape = SubResource( 1 )
 
@@ -100,30 +45,38 @@ frames = SubResource( 2 )
 
 [node name="AttackTimer" type="Timer" parent="boss"]
 
-[node name="Area2D" type="Area2D" parent="boss"]
+[node name="area2d_for_shoot_attack" type="Area2D" parent="boss"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boss/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss/area2d_for_shoot_attack"]
 visible = false
-position = Vector2( -23.9731, 233.736 )
-shape = SubResource( 3 )
+position = Vector2( 0, 139 )
+shape = SubResource( 6 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="barriers" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="left_barrier" type="StaticBody2D" parent="barriers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/left_barrier"]
 position = Vector2( -997.314, 164.232 )
 shape = SubResource( 4 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="up_barrier" type="StaticBody2D" parent="barriers"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/up_barrier"]
 position = Vector2( -26.939, -633.068 )
 shape = SubResource( 5 )
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="right_barrier" type="StaticBody2D" parent="barriers"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/right_barrier"]
 position = Vector2( 954, 157.48 )
 shape = SubResource( 4 )
+
+[node name="down_barrier" type="StaticBody2D" parent="barriers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barriers/down_barrier"]
+position = Vector2( -23.3506, 912.991 )
+shape = SubResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -135,90 +88,27 @@ position = Vector2( -8.52417, 821.053 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 
-[node name="turret" parent="." instance=ExtResource( 1 )]
+[node name="units" type="Node" parent="."]
+
+[node name="boss_turrets" type="Node" parent="units"]
+
+[node name="turret" parent="units/boss_turrets" instance=ExtResource( 1 )]
 position = Vector2( -644.867, -228.844 )
 scale = Vector2( 9, 9 )
 
-[node name="turret2" parent="." instance=ExtResource( 1 )]
+[node name="turret2" parent="units/boss_turrets" instance=ExtResource( 1 )]
 position = Vector2( 607.133, -228.844 )
 scale = Vector2( 9, 9 )
 
-[node name="turret3" parent="." instance=ExtResource( 1 )]
+[node name="turret3" parent="units/boss_turrets" instance=ExtResource( 1 )]
 position = Vector2( -624.867, 371.156 )
 scale = Vector2( 9, 9 )
 
-[node name="turret4" parent="." instance=ExtResource( 1 )]
+[node name="turret4" parent="units/boss_turrets" instance=ExtResource( 1 )]
 position = Vector2( 595.133, 343.156 )
 scale = Vector2( 9, 9 )
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2( -23.3506, 912.991 )
-shape = SubResource( 5 )
-
-[node name="player" type="KinematicBody2D" parent="."]
-position = Vector2( 0, 562 )
-script = ExtResource( 25 )
-red_channel_hp_modulate = SubResource( 6 )
-green_channel_hp_modulate = SubResource( 7 )
-blue_channel_hp_modulate = SubResource( 8 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="player"]
-frames = SubResource( 9 )
-frame = 4
-speed_scale = 3.0
-playing = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2( 0, -15 )
-shape = SubResource( 10 )
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-current = true
-limit_bottom = 540
-smoothing_enabled = true
-
-[node name="hp_circle" type="Sprite" parent="player"]
-modulate = Color( 0.894118, 0.341176, 0.309804, 1 )
-position = Vector2( 0, -15 )
-texture = ExtResource( 15 )
-
-[node name="MagnetArea2D" type="Area2D" parent="player"]
-script = ExtResource( 24 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/MagnetArea2D"]
-position = Vector2( 0, 4.23785 )
-shape = SubResource( 11 )
-
-[node name="MagnetSprite" type="AnimatedSprite" parent="player/MagnetArea2D"]
-visible = false
-modulate = Color( 1, 1, 1, 0.254902 )
-position = Vector2( -5.99317, 191.958 )
-scale = Vector2( 1.80181, 1.87834 )
-frames = SubResource( 12 )
-frame = 1
-offset = Vector2( 0, -100 )
-
-[node name="AttachArea2D" type="Area2D" parent="player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/AttachArea2D"]
-position = Vector2( 0, -15 )
-shape = SubResource( 13 )
-
-[node name="Label" type="Label" parent="player"]
-margin_left = -23.799
-margin_top = 73.5391
-margin_right = 16.201
-margin_bottom = 87.5391
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource( 20 )
+[node name="player" parent="units" instance=ExtResource( 4 )]
+position = Vector2( 0, 728 )
 
 [connection signal="timeout" from="boss/AttackTimer" to="boss" method="_on_AttackTimer_timeout"]
-[connection signal="body_entered" from="player/MagnetArea2D" to="player/MagnetArea2D" method="_on_MagnetArea2D_body_entered"]
-[connection signal="body_exited" from="player/MagnetArea2D" to="player/MagnetArea2D" method="_on_MagnetArea2D_body_exited"]
-[connection signal="body_entered" from="player/AttachArea2D" to="player" method="_on_Area2D_body_entered"]

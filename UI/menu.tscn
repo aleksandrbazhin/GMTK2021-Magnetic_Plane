@@ -20,7 +20,6 @@ animations = [ {
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4
-load_path = "res://.import/logo-no-bond.png-c45470877b0c8c4a05e764b058ad6f85.stex"
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -63,7 +62,7 @@ __meta__ = {
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
 margin_right = 1920.0
-margin_bottom = 283.0
+margin_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -71,46 +70,42 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 308.0
+margin_top = 421.0
 margin_right = 1920.0
-margin_bottom = 535.0
+margin_bottom = 421.0
 
 [node name="MenuBond" type="AnimatedSprite" parent="VBoxContainer/HBoxContainer2"]
 position = Vector2( 1062.73, 58.6266 )
 rotation = 1.5708
 frames = SubResource( 1 )
-frame = 1
 playing = true
 script = ExtResource( 12 )
 
 [node name="Tween" type="Tween" parent="VBoxContainer/HBoxContainer2/MenuBond"]
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2"]
-margin_right = 689.0
-margin_bottom = 227.0
+margin_right = 956.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 693.0
-margin_right = 1227.0
-margin_bottom = 227.0
+margin_left = 960.0
+margin_right = 960.0
 texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 1231.0
+margin_left = 964.0
 margin_right = 1920.0
-margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 560.0
+margin_top = 446.0
 margin_right = 1920.0
-margin_bottom = 772.0
+margin_bottom = 658.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -170,7 +165,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="VBoxContainer"]
-margin_top = 797.0
+margin_top = 683.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3

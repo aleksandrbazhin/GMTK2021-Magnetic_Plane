@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://game/units/bosses/boss_enemy.gd" type="Script" id=1]
+[ext_resource path="res://game/units/bosses/boss_enemy_turret.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Enemies/turret 1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
