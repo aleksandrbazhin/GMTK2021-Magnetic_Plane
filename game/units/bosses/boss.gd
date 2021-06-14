@@ -45,26 +45,25 @@ func boss_attack_bullets() -> void:
 func turrets_attack() -> void:
 	if destroyed == 4:
 		return
-	var turrets_destoryed = 0
-	if get_node_or_null("../units/turret") != null:
+	var turrets_destroyed = 0
+	if get_node_or_null("../units/boss_turrets/turret") != null:
 		get_node("../units/boss_turrets/turret").emit_bullet(GameState.player_position, false)
 	else:
-		turrets_destoryed += 1
-	if get_node_or_null("../units/turret2") != null:
+		turrets_destroyed += 1
+	if get_node_or_null("../units/boss_turrets/turret2") != null:
 		get_node("../units/boss_turrets/turret2").emit_bullet(GameState.player_position, false)
 	else:
-		turrets_destoryed += 1
-	if get_node_or_null("../units/turret3") != null:
-		get_node("../units/boss_turets/turret3").emit_bullet(GameState.player_position, false)
+		turrets_destroyed += 1
+	if get_node_or_null("../units/boss_turrets/turret3") != null:
+		get_node("../units/boss_turrets/turret3").emit_bullet(GameState.player_position, false)
 	else:
-		turrets_destoryed += 1
-	if get_node_or_null("../units/turret4") != null:
+		turrets_destroyed += 1
+	if get_node_or_null("../units/boss_turrets/turret4") != null:
 		get_node("../units/boss_turrets/turret4").emit_bullet(GameState.player_position, false)
 	else:
-		turrets_destoryed += 1
+		turrets_destroyed += 1
 	
-	destroyed = turrets_destoryed
-	print(destroyed)
+	destroyed = turrets_destroyed
 	if destroyed == 4:
 		add_to_group("enemies")
 
