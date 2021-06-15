@@ -18,8 +18,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 flags = 4
+load_path = "res://.import/logo-no-bond.png-c45470877b0c8c4a05e764b058ad6f85.stex"
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
