@@ -1,6 +1,5 @@
 extends AnimatedSprite
 
-
 onready var tween_values = [0, 10]
 
 func _enter_tree():
@@ -16,7 +15,6 @@ func _start_tween():
 	$Tween.interpolate_property(self, "position:y", tween_values[0], tween_values[1], 1)
 	$Tween.start()
 
-func _on_Tween_tween_completed(object, key):
-	printt(object, key)
+func _on_Tween_tween_completed():
 	tween_values.invert()
 	_start_tween()
