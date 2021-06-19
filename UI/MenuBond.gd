@@ -15,6 +15,6 @@ func _start_tween():
 	$Tween.interpolate_property(self, "position:y", tween_values[0], tween_values[1], 1)
 	$Tween.start()
 
-func _on_Tween_tween_completed():
+func _on_Tween_tween_completed(_object, _key):
 	tween_values.invert()
 	_start_tween()
